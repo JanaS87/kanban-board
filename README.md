@@ -1,11 +1,9 @@
 # Kanban- Board
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli)
+This project was generated with Angular CLI.
 
 --- 
-## A classic Kanban board. 
-
-### Developed with Angular, TypeScript and SCSS.
-
-### Tasks are currently still hardcoded.
+ A classic Kanban board. 
+ Developed with Angular, TypeScript and SCSS.
+Tasks are currently still hardcoded.
 

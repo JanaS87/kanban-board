@@ -15,3 +15,28 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.board {
+
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    .board-bar {
+        background: rgba(gray, 0.5);
+        padding: 8px 15px;
+     
+        .board-name {
+         font-size: 20px;
+         font-weight: bold;
+         color: white;
+     }
+     }
+
+}
+
+
+

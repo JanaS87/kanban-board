@@ -7,6 +7,8 @@ import {
   CdkDrag,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
+import { Board } from 'src/app/models/board.model';
+import { Column } from 'src/app/models/column.model';
 
 @Component({
   selector: 'app-main-view',
@@ -15,18 +17,16 @@ import {
 })
 export class MainViewComponent {
 
- todo = [
-  " Write some User Stories",
-  "Create a Kanban Board",
-  " Develop a Product",
- ] ;
+  board: Board = new Board('Test Board', [
+    new Column("Backlog", ["Write some User Stories",
+    "Create a Kanban Board",
+    "Develop a Product"]),
+    new Column("In Progress", ["Doing some Research",
+    "Developing a Prototype"]),
+    new Column("Quality Assurance", ["Make sure everything works!"]),
+    new Column("Done", ["Ship it!"]),
+  ]);
 
- inprogress = [
-  "Doing some Research",
-  "Developing a Prototype"
- ];
-
-  done: string[] = [];
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {

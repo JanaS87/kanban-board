@@ -9,6 +9,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Board } from 'src/app/models/board.model';
 import { Column } from 'src/app/models/column.model';
+import { Task } from 'src/app/models/task.model';
 
 @Component({
   selector: 'app-main-view',
@@ -18,17 +19,31 @@ import { Column } from 'src/app/models/column.model';
 export class MainViewComponent {
 
   board: Board = new Board('Test Board', [
-    new Column("Backlog", ["Write some User Stories",
-    "Create a Kanban Board",
-    "Develop a Product"]),
-    new Column("In Progress", ["Doing some Research",
-    "Developing a Prototype"]),
-    new Column("Quality Assurance", ["Make sure everything works!"]),
-    new Column("Done", ["Ship it!"]),
+    new Column("Backlog", [new Task("Write some User Stories")]),
+    new Column("In Progress", [new Task("Doing some Research")]),
+    new Column("Quality Assurance", [new Task("Make sure everything works!")]),
+    new Column("Done", [new Task("Ship it!")]),
   ]);
 
+  // adding function to add new tasks
+  addTask(column: Column, title: string) {
+    column.tasks.push(new Task(title));
+  }
 
-  drop(event: CdkDragDrop<string[]>) {
+  // adding function to edit a task
+  editTask(task: Task, newTitle: string) {
+    task.title = newTitle;
+  }
+
+  // adding function to delete a task
+  deleteTask(column: Column, task: Task) {
+    const index= column.tasks.indexOf(task);
+    if(index !== -1) {
+      column.tasks.splice(index, 1);
+    }
+  }
+
+  drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

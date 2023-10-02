@@ -20,21 +20,24 @@
             <div class="board-wrapper">
                 <div class="board-columns" cdkDropListGroup>
                     
-                    <div class="board-column" *ngFor="let column of board.columns">
-                        
-                    
+                    <div class="board-column" *ngFor="let column of board.columns">                    
                         <div class="column-title">
                             {{column.name}} 
                          </div>
+
                          <div class="tasks-container"
                          cdkDropList
                         [cdkDropListData]="column.tasks"
                         (cdkDropListDropped)="drop($event)">
-
-                            <div class="task" *ngFor="let item of column.tasks" cdkDrag>
-                                {{item}}
+                            <div class="task" *ngFor="let task of column.tasks" cdkDrag>
+                                {{task.title}}
+                                <button class="edit-task" (click)="editTask(task, 'New Title')">Edit</button>
+                                <button class="delete-task" (click)="deleteTask(column, task)">Delete</button>
                             </div>
-                            
+                            <div class="add-task">
+                                <input #newTaskTitle placeholder="New Task">
+                                <button class="new-task" (click)="addTask(column, newTaskTitle.value)">New Task</button>
+                            </div>
                          </div>
                     </div>
                     </div>

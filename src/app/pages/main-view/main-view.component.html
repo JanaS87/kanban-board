@@ -14,7 +14,15 @@
         </div>
         <div class="board">
             <div class="board-bar">
-                <p class="board-name">Board Name</p>
+                <ng-container *ngIf="!isEditingBoardName; else editBoardName">
+                    <span class="board-name">{{ board.name }}</span>
+                  </ng-container>
+                  <ng-template #editBoardName>
+                    <input [(ngModel)]="board.name" (blur)="updateBoardName()" />
+                  </ng-template>
+                  <button (click)="toggleEditBoardName()">
+                    {{ isEditingBoardName ? 'Speichern' : 'Bearbeiten' }}
+                  </button>
             </div>
 
             <div class="board-wrapper">

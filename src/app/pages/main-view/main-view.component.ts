@@ -42,6 +42,17 @@ export class MainViewComponent implements OnInit {
     localStorage.setItem('board', JSON.stringify(this.board));
   }
 
+  isEditingBoardName = false;
+
+  toggleEditBoardName() {
+    this.isEditingBoardName = !this.isEditingBoardName;
+  }
+
+  updateBoardName() {
+    this.saveBoardToLocalStorage();
+    this.isEditingBoardName = false;
+  }
+
   // adding function to add new tasks
   addTask(column: Column, title: string) {
     if(title.trim() === '') { // if title is empty, return

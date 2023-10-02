@@ -30,20 +30,24 @@
                         [cdkDropListData]="column.tasks"
                         (cdkDropListDropped)="drop($event)">
                             <div class="task" *ngFor="let task of column.tasks" cdkDrag>
-                                {{task.title}}
-                                <button class="edit-task" (click)="editTask(task, 'New Title')">Edit</button>
+                                <span *ngIf="!task.editing">{{task.title}}</span>
+                                <input *ngIf="task.editing" [(ngModel)]="task.title" />
+                                <button class="edit-task" (click)="toggleEdit(task)">Edit</button>
+
                                 <button class="delete-task" (click)="deleteTask(column, task)">Delete</button>
                             </div>
                             <div class="add-task">
                                 <input #newTaskTitle placeholder="New Task">
                                 <button class="new-task" (click)="addTask(column, newTaskTitle.value)">New Task</button>
-                            </div>
+                            
                          </div>
                     </div>
                     </div>
                 </div>
             </div>
     </div>
+                               
+</div>
 
 </body>
 </html>

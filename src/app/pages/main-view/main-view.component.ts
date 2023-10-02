@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {NgFor} from '@angular/common';
 import {
   CdkDragDrop,
@@ -16,7 +16,9 @@ import { Task } from 'src/app/models/task.model';
   templateUrl: './main-view.component.html',
   styleUrls: ['./main-view.component.scss']
 })
-export class MainViewComponent {
+export class MainViewComponent implements OnInit {
+
+  task: Task = new Task("");
 
   board: Board = new Board('Test Board', [
     new Column("Backlog", [new Task("Write some User Stories")]),
@@ -25,14 +27,34 @@ export class MainViewComponent {
     new Column("Done", [new Task("Ship it!")]),
   ]);
 
+  ngOnInit() {
+    this.loadBoardFromLocalStrorage();
+  }
+
+  loadBoardFromLocalStrorage() {
+    const saveBoard = localStorage.getItem('board');
+    if (saveBoard) {
+      this.board = JSON.parse(saveBoard);
+    }
+  }
+
+  saveBoardToLocalStorage() {
+    localStorage.setItem('board', JSON.stringify(this.board));
+  }
+
   // adding function to add new tasks
   addTask(column: Column, title: string) {
+    if(title.trim() === '') { // if title is empty, return
+      return;
+    }
     column.tasks.push(new Task(title));
+    this.saveBoardToLocalStorage();
   }
 
   // adding function to edit a task
-  editTask(task: Task, newTitle: string) {
-    task.title = newTitle;
+  toggleEdit(task: Task) {
+    task.editing = !task.editing;
+    this.saveBoardToLocalStorage();
   }
 
   // adding function to delete a task
@@ -40,6 +62,7 @@ export class MainViewComponent {
     const index= column.tasks.indexOf(task);
     if(index !== -1) {
       column.tasks.splice(index, 1);
+      this.saveBoardToLocalStorage();
     }
   }
 

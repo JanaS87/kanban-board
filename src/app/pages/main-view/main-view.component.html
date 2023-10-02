@@ -20,7 +20,7 @@
                   <ng-template #editBoardName>
                     <input [(ngModel)]="board.name" (blur)="updateBoardName()" />
                   </ng-template>
-                  <button (click)="toggleEditBoardName()">
+                  <button class="button btn-board-name" (click)="toggleEditBoardName()">
                     {{ isEditingBoardName ? 'Speichern' : 'Bearbeiten' }}
                   </button>
             </div>
@@ -40,13 +40,16 @@
                             <div class="task" *ngFor="let task of column.tasks" cdkDrag>
                                 <span *ngIf="!task.editing">{{task.title}}</span>
                                 <input *ngIf="task.editing" [(ngModel)]="task.title" />
-                                <button class="edit-task" (click)="toggleEdit(task)">Edit</button>
-
-                                <button class="delete-task" (click)="deleteTask(column, task)">Delete</button>
+                                
+                                <div class="btn-container">
+                                    <button class="  btn-edit-task" (click)="toggleEdit(task)">Edit</button>
+                                    <button class="  btn-delete-task" (click)="deleteTask(column, task)">Delete</button>
+                                </div>
+                                
                             </div>
                             <div class="add-task">
                                 <input #newTaskTitle placeholder="New Task">
-                                <button class="new-task" (click)="addTask(column, newTaskTitle.value)">New Task</button>
+                                <button class=" button btn-new-task" (click)="addTask(column, newTaskTitle.value)">New Task</button>
                             
                          </div>
                     </div>

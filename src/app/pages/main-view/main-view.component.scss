@@ -83,6 +83,8 @@
 
 .task {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 15px 12px;
     background: white;
     border-bottom: solid 1px #ddd;
@@ -115,4 +117,55 @@
   }
 
 
+.button {
+  background: linear-gradient(#13c7c3, #28ccaa); /* Farbverlauf */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px; /* Kleinere Schriftgröße */
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  margin-left: 10px;
+  }
 
+  .button:hover {
+    background: linear-gradient(#2af598, #13f7f4);
+  }
+
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 20px;
+}
+
+.task button {
+  background: linear-gradient(#13f7f4, #2af598); /* Farbverlauf */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px; /* Kleinere Schriftgröße */
+  font-weight: bold;
+  padding: 8px 10px;
+  text-align: center;
+  margin-left: 10px;
+  transition: background 0.3s ease;
+
+}
+
+
+
+.task button:hover {
+    background: linear-gradient(#2af598, #13f7f4); /* Umgekehrter Farbverlauf im Hover-Zustand */
+  }
+
+.task button.btn-edit-task {
+    background: linear-gradient(#007bff, #0056b3);
+  }
+
+  .task button.btn-delete-task {
+    background: linear-gradient(#dc3545, #c82333);
+}
